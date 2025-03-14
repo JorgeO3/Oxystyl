@@ -1,0 +1,20 @@
+[package]
+name = "oxystyl"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+lalrpop-util = { version = "0.22.1", features = ["lexer", "unicode"] }
+logos = "0.15.0"
+walkdir = "2.5.0"
+cssparser = "0.34.0"
+
+[build-dependencies]
+lalrpop = "0.22.1"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+debug = false
+panic = "abort"

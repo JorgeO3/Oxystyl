@@ -1,0 +1,27 @@
+// Stylus css Lexer
+// Non-terminal symbols:
+
+EOS -> * EOS *
+NULL -> * null *
+Separator -> * ; *
+Keywords -> *   * else unless, return, for, in *
+URLChars -> * /^[\/:@.;?&=*!,<>#%0-9]+/ *
+Comment -> * // *
+Newline -> * \n *
+Escaped -> * '\\' . ' ' *
+Import -> * @import *
+Literal -> * '@css' ' '* '{' .* '}' ' '* *
+AnonFunc -> * '@(' *
+Braces -> * '{ * '} *
+Paren -> * '(' * ')' *
+Color -> * '#' * *
+String -> * '"' .* '"' *
+Unit -> * '-'? (digit+ | digit* '.' digit+) unit *
+NamedOp -> * 'not' | 'and' | 'or' | 'is' | 'is not' | 'isnt' | 'is a' | 'is defined' *
+Boolean -> * 'true' | 'false' *
+Unicode -> * 'U+' [0-9A-Fa-f?]{1,6}(?:-[0-9A-Fa-f]{1,6})? *
+Identifier -> * -*[_a-zA-Z$] [-\w\d$]* *
+Operator -> * ',' | '+' | '+=' | '-' | '-=' | '' | '=' | '/' | '/=' | '%' | '%=' | '**' | '!' | '&' | '&&' | '||' | '>' | '>=' | '<' | '<=' | '=' | '==' | '!=' | '!' | '~' | '?=' | ':=' | '?' | ':' | '[' | ']' | '.' | '..' | '...' *
+Omit Carriage Return -> * '\r' *
+Space -> * ' '+ *
+Selector -> * ^|[^\n,;]+ *
