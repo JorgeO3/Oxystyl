@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-lalrpop-util = { version = "0.22.1", features = ["lexer", "unicode"] }
+lalrpop-util = { version = "0.22.1", features = ["unicode", "lexer"] }
 logos = "0.15.0"
 walkdir = "2.5.0"
 cssparser = "0.34.0"

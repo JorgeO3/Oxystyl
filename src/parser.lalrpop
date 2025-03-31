@@ -1,0 +1,28 @@
+// AST simplificado con separación clara entre estructura y metadatos
+use logos::Span;
+use std::rc::Rc;
+use super::*;
+
+// ----------------------------
+// Archivo de gramática .lalrpop:
+grammar<'input>(input: &'input str);
+
+Term: Box<ExprSymbol<'input>> = {
+    "num" => Box::new(ExprSymbol::NumSymbol(<>)),
+    "(" <Expr> ")"
+};
+
+Num: i32 = <s:r"[0-9]+"> => i32::from_str(s).unwrap();
+
+extern {
+    type Location = usize;
+    type Error = ();
+
+    enum Tok<'input> {
+        "num" => Tok::NumSymbol(<&'input str>),
+        "FactorOp" => Tok::FactorOp(<Opcode>),
+        "ExprOp" => Tok::ExprOp(<Opcode>),
+        "(" => Tok::ParenOpen,
+        ")" => Tok::ParenClose,
+    }
+}
